@@ -49,14 +49,26 @@ namespace NavBarBackImage.iOS
 
         void SetBackButtonOnPage(Page page)
         {
-            if (page is INavigationActionBarConfig incomingPage)
-            {
-                SetImageTitleBackButton("Down", "返回", -15);
-            }
-            else
+            // Below is what I added for common usage.
+            if (page.GetType() == typeof(MainPage))
             {
                 SetDefaultBackButton();
             }
+            else
+            {
+                SetImageTitleBackButton("Down", "返回", -15);
+            }
+
+            // Below is the previous implementation which is from the other GitHub repository
+
+            //if (page is INavigationActionBarConfig incomingPage)
+            //{
+            //    SetImageTitleBackButton("Down", "返回", -15);
+            //}
+            //else
+            //{
+            //    SetDefaultBackButton();
+            //}
         }
 
         void SetImageTitleBackButton(string imageBundleName, string buttonTitle, int horizontalOffset)
